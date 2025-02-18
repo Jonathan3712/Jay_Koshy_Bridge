@@ -1,0 +1,138 @@
+/* Base styles for the header */
+.head_of {
+    background-color: #f76900;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+  }
+  
+  .head_of h1, .head_of h2 {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header-content {
+    margin-bottom: 10px;
+  }
+  .head_of h1 {
+    font-size: 24px;
+  }
+  
+  .head_of h2 {
+    font-size: 18px;
+  }
+  
+  .header-content {
+    margin-bottom: 10px;
+  }
+  
+  /* Hamburger Menu */
+  .hamburger-icon {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    transition: all 0.3s ease; /* Add transition */
+  }
+  
+  .hamburger-icon span {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Add transition */
+  }
+  
+  /* When the menu is open, change the hamburger icon to 'X' */
+  .hamburger-icon.open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  
+  .hamburger-icon.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger-icon.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+  
+  /* For mobile screens, show the hamburger menu */
+  @media (max-width: 768px) {
+    .hamburger-icon {
+      display: flex;
+    }
+  
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 100%;
+      background-color: #f76900;
+      text-align: center;
+      transform: translateY(-100%); /* Start from offscreen */
+      transition: transform 0.3s ease; /* Add transition for menu slide */
+    }
+  
+    .nav-menu.open {
+      display: block;
+      transform: translateY(0); /* Slide in */
+    }
+  
+    .nav-menu ul {
+      list-style: none;
+      padding: 0;
+    }
+  
+    .nav-menu li {
+      padding: 10px 0;
+    }
+  
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: block;
+    }
+  
+    .nav-menu a:hover {
+      background-color: #d85a00;
+    }
+  }
+  
+  /* For larger screens, show the navigation links */
+  @media (min-width: 769px) {
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    .nav-menu ul {
+      list-style: none;
+      display: flex;
+    }
+  
+    .nav-menu li {
+      margin: 0 15px;
+    }
+  
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+    }
+  
+    .nav-menu a:hover {
+      text-decoration: underline;
+    }
+  }
+  
