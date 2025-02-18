@@ -1,40 +1,42 @@
-name: Deploy React App to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main  # Deploy when there's a push to the main branch (or another branch)
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      # Checkout the code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
+      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
 
+      # Install dependencies
       - name: Install dependencies
-        run: |
-          cd frontend
-          npm install
+        run: npm install
 
+      # Build the React app (or whatever build command you use)
       - name: Build the app
-        run: |
-          cd frontend
-          npm run build
+        run: npm run build
 
+      # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "Your GitHub Username"
+          git config --global user.email "your-email@example.com"
+          git remote set-url origin https://github.com/${{ github.repository }}
+          git checkout --orphan gh-pages  # Create an orphan branch if it doesn't exist
           git add -A
           git commit -m "Deploy to GitHub Pages"
-          git push https://$GH_TOKEN@github.com/Jonathan3712/Evangelical-Chaplaincy.git HEAD:gh-pages
+          git push --force https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} HEAD:gh-pages
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
-
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}  # Use the personal access token from secrets
